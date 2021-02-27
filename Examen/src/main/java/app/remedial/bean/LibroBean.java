@@ -18,7 +18,8 @@ public class LibroBean {
 	private libroON libroOn;
 	private String titulo;
 	private int stock;
-	private List<Categoria> categoria;
+	private String cate;
+	private ArrayList<Categoria> listCat = null;
 	
 	public LibroBean() {
 		init();
@@ -26,7 +27,7 @@ public class LibroBean {
 
 	public void init() {
 		titulo = null;
-		//categoria=null;
+		cate=null;
 	}
 
 	public String getTitulo() {
@@ -48,18 +49,48 @@ public class LibroBean {
 
 	
 	
-	
-	
 
-	public void setCategoria(List<Categoria> categoria) {
-		this.categoria = categoria;
+
+
+	public String getCate() {
+		return cate;
+	}
+
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
+
+	public ArrayList<Categoria> getListCat() {
+		//return listCat;
+		
+		
+		if (listCat == null) {
+			listCat = new ArrayList<Categoria>();
+			for (int i = 0; i < 6; i++) {
+				Categoria p = new Categoria();
+				p.setLibro(null);
+				listCat.add(p);
+			}
+		} else {
+			listCat = (ArrayList<Categoria>) libroOn.buscarCategoria();
+		}
+		return listCat;
+		
+	}
+
+	public void setListCat(ArrayList<Categoria> listCat) {
+		this.listCat = listCat;
 	}
 
 	public void doCrear(){
 		Libro lib= new Libro();
 		lib.setTitulo(titulo);
 		lib.setStock(stock);
-		//lib.setCategoria(null);
+		
+		Categoria cat=new Categoria();
+		cat.setLibro(lib);
+		cat.setTipo(cate);
+		libroOn.Crear(lib, cat);
 	}
 	
 	

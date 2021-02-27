@@ -14,15 +14,17 @@ public class libroON {
 	private libroDAO daolibro;
 	
 	
-		public List<Libro> buscarLibro(String categoria){
+		public List<Categoria> buscarLibro(String categoria){
 			return daolibro.getLibros(categoria);
+			//return daolibro.getCategorias();
 		}
 		
 	
 		
-		public void Crear(Libro libro) {
+		public void Crear(Libro libro, Categoria categoria) {
 			try {
 				daolibro.insertJPA(libro);
+				daolibro.insertCategoria(categoria);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -30,10 +32,21 @@ public class libroON {
 		}
 		
 		
-		//public List<Categoria> buscarCategoria(){
-			//return ; 
-		//}
-		
+		public List<Categoria> buscarCategoria(){
+			return daolibro.getCategorias(); 
+		}
+		public void actualizarLibro(int id) {
+			try {
+				Libro l=daolibro.read(id);
+				int sto=l.getStock();
+				int rest=sto-1;
+				l.setStock(rest);
+				daolibro.updateJPA(l);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 		
 		

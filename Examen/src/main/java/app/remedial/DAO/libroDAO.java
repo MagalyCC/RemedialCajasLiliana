@@ -21,6 +21,10 @@ public class libroDAO {
 			em.persist(entity);
 			return true;
 		}
+	public boolean insertCategoria(Categoria entity) throws SQLException {
+		em.persist(entity);
+		return true;
+	}
 	//DAO actualizar
 		public void updateJPA(Libro entity) throws Exception {
 	        try {
@@ -31,18 +35,18 @@ public class libroDAO {
 	    }
 		
 	//DAO borrar
-	    public void deleteId(String categoria) throws Exception {
+	    public void deleteId(int id) throws Exception {
 	        try {
-	            em.remove(read(categoria));
+	            em.remove(read(id));
 	        } catch (Exception e) {
 	            throw new Exception("Error Eliminar Cliente " +e.getMessage());
 	        }
 	    }
 
 	//DAO buscar
-	    public Libro read(String categoria) throws Exception {
+	    public Libro read(int id) throws Exception {
 	        try {
-	            return em.find(Libro.class, categoria);
+	            return em.find(Libro.class, id);
 	        } catch (Exception e) {
 	            throw new Exception("Erro leer Cliente " +e.getMessage());
 	        }
@@ -53,15 +57,15 @@ public class libroDAO {
 
 
 	//NOOO DAO buscar debuelve lista este no se esta usando
-		public List<Libro> getLibros(String categoria) {
-			String jpql= "Select c from Libro c where c.categoria =?1";
-			Query q = em.createQuery(jpql, Libro.class);
+		public List<Categoria> getLibros(String categoria) {
+			String jpql= "Select c from Categoria c where c.tipo =?1";
+			Query q = em.createQuery(jpql, Categoria.class);
 			q.setParameter(1, categoria);
-			return (List<Libro>) q.getResultList();
+			return (List<Categoria>) q.getResultList();
 		}
 		
 		
-		public List<Categoria> getLibros() {
+		public List<Categoria> getCategorias() {
 			String jpql= "Select c from Categoria c ";
 			Query q = em.createQuery(jpql, Categoria.class);
 			return (List<Categoria>) q.getResultList();
