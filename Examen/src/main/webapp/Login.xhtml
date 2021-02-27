@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd%22%3E">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/html/template.xhtml">
+	<ui:define name="title">
+           Listar Usuarios
+    </ui:define>
+	<ui:define name="contenido">
+	<h1>LOGIN</h1>
+	<h:form>
+	<h:messages autoUpdate="true"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Correo" />
+			<h:inputText value="#{loginBean.correo}" required="true"/>
+			<h:outputLabel value="Contraseña" />
+			<h:inputText value="#{loginBean.password}" required="true"/>
+			<h:outputLabel value="" />
+			<h:commandButton action="#{loginBean.doBuscar}"
+				value="LOGIN" />
+		</h:panelGrid>
+	</h:form>
+	
+	</ui:define>
+</ui:composition>
+
+</html>
