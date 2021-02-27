@@ -4,8 +4,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-
-	<h1>LOGIN</h1>
+<ui:composition template="/html/template.xhtml">
+<ui:define name="title">
+           Listar Usuarios
+    </ui:define>
+	<ui:define name="contenido">
+	<h1>Crear Libros</h1>
 	<h:form>
 	<h:messages autoUpdate="true"/>
 		<h:panelGrid columns="2">
@@ -14,12 +18,15 @@
 			<h:outputLabel value="Strock" />
 			<h:inputText value="#{libroBean.stock}" />
 			<h:outputLabel value="" />
+			
+			
+			<h:outputLabel value="" />
 			<h:commandButton action="#{libroBean.doCrear}"
-				value="Crear" />
+				value="LOGIN" />
 		</h:panelGrid>
 	</h:form>
 	
-	
-
+</ui:define>
+</ui:composition>
 
 </html>

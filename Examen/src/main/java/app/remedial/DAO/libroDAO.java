@@ -7,6 +7,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import app.remedial.modelo.Categoria;
 import app.remedial.modelo.Libro;
 @Stateless
 public class libroDAO {
@@ -56,5 +58,12 @@ public class libroDAO {
 			Query q = em.createQuery(jpql, Libro.class);
 			q.setParameter(1, categoria);
 			return (List<Libro>) q.getResultList();
+		}
+		
+		
+		public List<Categoria> getLibros() {
+			String jpql= "Select c from Categoria c ";
+			Query q = em.createQuery(jpql, Categoria.class);
+			return (List<Categoria>) q.getResultList();
 		}
 }
