@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import app.remedial.DAO.libroDAO;
+import app.remedial.modelo.Autores;
 import app.remedial.modelo.Categoria;
 import app.remedial.modelo.Libro;
 
@@ -35,19 +36,30 @@ public class libroON {
 		public List<Categoria> buscarCategoria(){
 			return daolibro.getCategorias(); 
 		}
+		
+		
 		public void actualizarLibro(int id) {
-			try {
-				Libro l=daolibro.read(id);
-				int sto=l.getStock();
-				int rest=sto-1;
-				l.setStock(rest);
-				daolibro.updateJPA(l);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+            try {
+                Libro l=daolibro.read(id);
+                int sto=l.getStock();
+                int rest=sto-1;
+                l.setStock(rest);
+                Libro l2=l;
+                l2.setStock(rest);
+                daolibro.updateJPA(l2);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+		
+		public List<Autores> buscarAutores(){
+            return daolibro.getAutores(); 
+        }
 	
+		public void Cargar(List<Categoria> categoria) {
+			daolibro.getCategorias();
+		}
 		
 		
 }

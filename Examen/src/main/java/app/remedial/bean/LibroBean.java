@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import app.remedial.ON.libroON;
+import app.remedial.modelo.Autores;
 import app.remedial.modelo.Categoria;
 import app.remedial.modelo.Libro;
 
@@ -49,7 +51,37 @@ public class LibroBean {
 
 	
 	
-
+	private String selectedPrice;
+	public String getSelectedPrice() {
+	    return selectedPrice;
+	}
+	public void setSelectedPrice(String newPrice) {
+	    selectedPrice = newPrice;
+	}
+	public List<SelectItem> getPrices() {
+	    List<SelectItem> retVal = new ArrayList<SelectItem>();
+	    List<Categoria>ca=libroOn.buscarCategoria();
+	    for(int i=0;i<ca.size();i++) {
+	    	retVal.add(new SelectItem(libroOn.buscarCategoria().get(i).getTipo()+""));
+	    }
+	    return retVal;
+	}
+	
+	private String selectedAutor;
+	public String getSelectedAutor() {
+	    return selectedAutor;
+	}
+	public void setSelectedAutor(String newPrice) {
+		selectedAutor = newPrice;
+	}
+	public List<SelectItem> getAutor() {
+	    List<SelectItem> retVal = new ArrayList<SelectItem>();
+	    List<Autores>ca=libroOn.buscarAutores();
+	    for(int i=0;i<ca.size();i++) {
+	    	retVal.add(new SelectItem(libroOn.buscarAutores().get(i).getNombre()+""));
+	    }
+	    return retVal;
+	}
 
 
 	public String getCate() {
@@ -60,10 +92,7 @@ public class LibroBean {
 		this.cate = cate;
 	}
 
-	public ArrayList<Categoria> getListCat() {
-		//return listCat;
-		
-		
+	public ArrayList<Categoria> getListCat() {		
 		if (listCat == null) {
 			listCat = new ArrayList<Categoria>();
 			for (int i = 0; i < 6; i++) {
@@ -89,7 +118,7 @@ public class LibroBean {
 		
 		Categoria cat=new Categoria();
 		cat.setLibro(lib);
-		cat.setTipo(cate);
+		cat.setTipo(selectedPrice);
 		libroOn.Crear(lib, cat);
 	}
 	

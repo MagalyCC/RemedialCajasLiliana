@@ -6,21 +6,29 @@
 
 
 	<h1>Crear Libro</h1>
-	<h:form>
-	<h:messages autoUpdate="true"/>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Titulo" />
-			<h:inputText value="#{libroBean.titulo}" />
-			<h:outputLabel value="Strock" />
-			<h:inputText value="#{libroBean.stock}" />
-			<h:outputLabel value="Categoria" />
-			<h:inputText value="#{libroBean.cate}" />
-			<h:outputLabel value="" />
-			<h:commandButton action="#{libroBean.doCrear}"
-				value="Crear" />
-		</h:panelGrid>
-		
-	</h:form>
+	
+<h:form>
+    <h:messages autoUpdate="true" />
+    <h:panelGrid columns="2">
+        <h:outputLabel value="Titulo" />
+        <h:inputText value="#{libroBean.titulo}" />
+        <h:outputLabel value="Strock" />
+        <h:inputText value="#{libroBean.stock}" />
+       
+        <h:outputLabel value="" />
+        <h:commandButton action="#{libroBean.doCrear}" value="Crear" />
+
+        <h:selectOneMenu id="priceMenu" value="#{libroBean.selectedPrice}">
+            <f:selectItems value="#{libroBean.prices}" />
+        </h:selectOneMenu>
+        <h:selectOneMenu id="autorMenu" value="#{libroBean.selectedAutor}">
+            <f:selectItems value="#{libroBean.autor}" />
+        </h:selectOneMenu>
+
+    </h:panelGrid>
+
+</h:form>
+
 	
 	
 

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import app.remedial.modelo.Autores;
 import app.remedial.modelo.Categoria;
 import app.remedial.modelo.Libro;
 @Stateless
@@ -52,6 +53,12 @@ public class libroDAO {
 	        }
 	    }
 
+	    
+	    public List<Autores> getAutores() {
+            String jpql= "Select c from Autores c ";
+            Query q = em.createQuery(jpql, Autores.class);
+            return (List<Autores>) q.getResultList();
+        }
 
 
 
