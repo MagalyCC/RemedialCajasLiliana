@@ -23,6 +23,7 @@ public class Libro implements Serializable{
 	private int idLibro;
 	private String titulo;
 	private int stock;
+	private String autor;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Libro")
 	private List<Autores> ingreso=new ArrayList<Autores>();
 	
@@ -48,6 +49,12 @@ public class Libro implements Serializable{
 		this.ingreso = ingreso;
 	}
 
+	public String getAutor() {
+		return autor;
+	}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
 	public int getStock() {
 		return stock;
 	}

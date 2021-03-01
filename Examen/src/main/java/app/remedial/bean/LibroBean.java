@@ -115,6 +115,7 @@ public class LibroBean {
 		Libro lib= new Libro();
 		lib.setTitulo(titulo);
 		lib.setStock(stock);
+		lib.setAutor(selectedAutor);
 		
 		Categoria cat=new Categoria();
 		cat.setLibro(lib);
